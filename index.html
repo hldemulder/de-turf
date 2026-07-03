@@ -115,9 +115,13 @@
       <button class="close floating" value="cancel">×</button>
       <span class="big-icon" id="adjustIcon">🍺</span>
       <h2 id="adjustTitle">Voorraad aanpassen</h2>
-      <p>Hoeveel stuks wil je toevoegen?</p>
+      <p id="adjustCopy">Hoeveel stuks wil je toevoegen?</p>
+      <div class="direction-toggle">
+        <button type="button" class="selected" id="stockAddMode">＋ Erbij</button>
+        <button type="button" id="stockRemoveMode">− Eraf</button>
+      </div>
       <div class="stepper"><button type="button" id="minusAdjust">−</button><strong id="adjustAmount">24</strong><button type="button" id="plusAdjust">＋</button></div>
-      <button type="submit" class="primary-action">Toevoegen</button>
+      <button type="submit" class="primary-action" id="adjustSubmit">Toevoegen</button>
     </form>
   </dialog>
 

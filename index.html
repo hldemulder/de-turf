@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#f5f0e7" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="De Turf" />
+  <title>De Turf</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark">T</span><span>De Turf</span></div>
+      <button class="avatar" id="profileButton" aria-label="Profiel kiezen">?</button>
+    </header>
+
+    <section class="view active" id="turfView">
+      <div class="welcome">
+        <p class="eyebrow" id="greeting">GOEDEMORGEN</p>
+        <h1 id="welcomeName">Wie ben jij?</h1>
+        <p>Tik wat je pakt. Klaar.</p>
+      </div>
+
+      <div class="balance-card" id="balanceCard"></div>
+
+      <div class="product-grid" id="productGrid"></div>
+
+      <button class="round-card" id="roundButton">
+        <span class="round-icon">♟♟</span>
+        <span><strong>Rondje turven</strong><small>Voor meerdere huisgenoten tegelijk</small></span>
+        <span class="arrow">→</span>
+      </button>
+
+      <section class="recent-section">
+        <div class="section-heading"><h2>Jouw totaal</h2><button id="viewAllButton">Bekijk alles</button></div>
+        <div id="recentList" class="recent-list"></div>
+      </section>
+    </section>
+
+    <section class="view" id="stockView">
+      <div class="page-title"><p class="eyebrow">DE BAR</p><h1>Voorraad</h1><p>Een slimme schatting op basis van alle turfjes.</p></div>
+      <div id="stockCards" class="stock-list"></div>
+      <div class="tip-card"><span>✦</span><div><strong>Voorraad aanvullen?</strong><p>Beheer kan dozen en kratten toevoegen.</p></div></div>
+    </section>
+
+    <section class="view" id="houseView">
+      <div class="page-title"><p class="eyebrow">HUIDIGE PERIODE</p><h1>Het huis</h1><p>Verbruik en krediet sinds de laatste afrekening.</p></div>
+      <div class="house-summary" id="houseSummary"></div>
+      <h2 class="subheading">Bewoners</h2>
+      <div id="peopleList" class="people-list"></div>
+    </section>
+
+    <section class="view" id="adminView">
+      <div class="page-title"><p class="eyebrow">BEHEER</p><h1>Administratie</h1><p>Voorraad corrigeren en de laatste boekingen nalopen.</p></div>
+      <div class="admin-stats" id="adminStats"></div>
+      <div id="financeDenied" class="tip-card"><span>🔒</span><div><strong>Financieel beheer afgeschermd</strong><p>Alleen Thijs, Billie en Henny kunnen geld en afrekenperiodes beheren.</p></div></div>
+      <div id="financeAdmin">
+        <section class="settings-card">
+          <div class="section-heading"><h2>Afrekenperiode</h2><span id="periodLabel"></span></div>
+          <p>Alle tellers en saldi lopen vanaf deze datum.</p>
+          <button class="share-report" id="createReportButton">▣ Deel afrekening als afbeelding</button>
+          <button class="danger-soft" id="newPeriodButton">Nieuwe periode starten</button>
+        </section>
+        <h2 class="subheading">Prijzen per stuk</h2>
+        <div id="priceSettings" class="price-settings"></div>
+        <h2 class="subheading">Krediet & vereffenen</h2>
+        <div id="creditAdmin" class="credit-admin"></div>
+      </div>
+      <h2 class="subheading">Voorraad aanpassen</h2>
+      <div id="adminStock" class="admin-stock"></div>
+      <h2 class="subheading">Alle boekingen</h2>
+      <div id="historyList" class="recent-list full"></div>
+    </section>
+
+    <nav class="bottom-nav" aria-label="Hoofdnavigatie">
+      <button class="nav-item active" data-view="turfView"><span>＋</span><small>Turven</small></button>
+      <button class="nav-item" data-view="stockView"><span>▥</span><small>Voorraad</small></button>
+      <button class="nav-item" data-view="houseView"><span>♙</span><small>Huis</small></button>
+      <button class="nav-item" data-view="adminView"><span>⚙</span><small>Beheer</small></button>
+    </nav>
+  </main>
+
+  <div class="toast" id="toast"></div>
+
+  <dialog id="profileDialog" class="sheet">
+    <form method="dialog">
+      <div class="sheet-handle"></div>
+      <div class="sheet-title"><div><p class="eyebrow">PROFIEL</p><h2>Wie bent u?</h2></div><button class="close" value="cancel">×</button></div>
+      <p class="sheet-copy">Kies één keer je naam. Dit blijft op dit toestel bewaard.</p>
+      <div class="name-grid" id="nameGrid"></div>
+    </form>
+  </dialog>
+
+  <dialog id="roundDialog" class="sheet tall">
+    <form method="dialog" id="roundForm">
+      <div class="sheet-handle"></div>
+      <div class="sheet-title"><div><p class="eyebrow">RONDJE</p><h2>Voor wie haal je?</h2></div><button class="close" value="cancel">×</button></div>
+      <div class="round-product-row" id="roundProducts"></div>
+      <div class="select-tools"><button type="button" id="selectAll">Iedereen</button><button type="button" id="clearAll">Wis selectie</button></div>
+      <div class="round-names" id="roundNames"></div>
+      <button type="submit" class="primary-action" id="confirmRound" disabled>Selecteer huisgenoten</button>
+    </form>
+  </dialog>
+
+  <dialog id="adjustDialog" class="center-dialog">
+    <form method="dialog" id="adjustForm">
+      <button class="close floating" value="cancel">×</button>
+      <span class="big-icon" id="adjustIcon">🍺</span>
+      <h2 id="adjustTitle">Voorraad aanpassen</h2>
+      <p>Hoeveel stuks wil je toevoegen?</p>
+      <div class="stepper"><button type="button" id="minusAdjust">−</button><strong id="adjustAmount">24</strong><button type="button" id="plusAdjust">＋</button></div>
+      <button type="submit" class="primary-action">Toevoegen</button>
+    </form>
+  </dialog>
+
+  <dialog id="creditDialog" class="center-dialog">
+    <form method="dialog" id="creditForm">
+      <button class="close floating" value="cancel">×</button>
+      <span class="big-icon">💶</span>
+      <h2 id="creditTitle">Krediet toevoegen</h2>
+      <p>Bedrag om op het saldo te zetten</p>
+      <div class="credit-presets">
+        <button type="button" data-credit="5">€ 5</button>
+        <button type="button" data-credit="10">€ 10</button>
+        <button type="button" data-credit="20">€ 20</button>
+      </div>
+      <label class="money-input">€ <input id="creditAmount" inputmode="decimal" type="number" min="0.01" step="0.01" value="10.00"></label>
+      <button type="submit" class="primary-action">Krediet toevoegen</button>
+    </form>
+  </dialog>
+
+  <dialog id="reportDialog" class="sheet tall">
+    <form method="dialog">
+      <div class="sheet-handle"></div>
+      <div class="sheet-title"><div><p class="eyebrow">EINDAFREKENING</p><h2>Klaar om te delen</h2></div><button class="close" value="cancel">×</button></div>
+      <p class="sheet-copy">Controleer de afbeelding, kopieer ze en plak ze daarna in WhatsApp.</p>
+      <div class="report-preview"><img id="reportImage" alt="Overzicht van namen en saldi"></div>
+      <div class="report-actions">
+        <button type="button" class="secondary-action" id="downloadReport">Download</button>
+        <button type="button" class="primary-action whatsapp-action" id="copyReport">Kopieer afbeelding</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="pinDialog" class="center-dialog">
+    <form method="dialog" id="pinForm">
+      <button class="close floating" value="cancel">×</button>
+      <span class="big-icon">🔐</span>
+      <h2 id="pinTitle">Beheer-PIN</h2>
+      <p id="pinCopy">Voer je viercijferige PIN in.</p>
+      <label class="pin-field">PIN<input id="pinInput" type="password" inputmode="numeric" autocomplete="off" maxlength="4" pattern="[0-9]{4}" required></label>
+      <label class="pin-field" id="pinConfirmField">Herhaal PIN<input id="pinConfirm" type="password" inputmode="numeric" autocomplete="off" maxlength="4" pattern="[0-9]{4}"></label>
+      <p class="pin-error" id="pinError"></p>
+      <button type="submit" class="primary-action" id="pinSubmit">PIN instellen</button>
+    </form>
+  </dialog>
+
+  <dialog id="houseCodeDialog" class="center-dialog">
+    <form method="dialog" id="houseCodeForm">
+      <span class="big-icon">🏠</span>
+      <h2>Welkom bij De Turf</h2>
+      <p>Voer eenmalig de huiscode in. Je telefoon onthoudt hem daarna.</p>
+      <label class="pin-field">Huiscode<input id="houseCodeInput" type="password" autocomplete="off" required></label>
+      <p class="pin-error" id="houseCodeError"></p>
+      <button type="submit" class="primary-action">Open De Turf</button>
+    </form>
+  </dialog>
+
+  <script src="app.js"></script>
+  <script>if('serviceWorker' in navigator&&(location.protocol==='https:'||location.hostname==='localhost'))navigator.serviceWorker.register('./service-worker.js');</script>
+</body>
+</html>

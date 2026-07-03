@@ -71,6 +71,8 @@
         </section>
         <h2 class="subheading">Prijzen per stuk</h2>
         <div id="priceSettings" class="price-settings"></div>
+        <h2 class="subheading">Gewenste voorraadcapaciteit</h2>
+        <div id="capacitySettings" class="price-settings"></div>
         <h2 class="subheading">Krediet & vereffenen</h2>
         <div id="creditAdmin" class="credit-admin"></div>
       </div>
@@ -175,6 +177,17 @@
       <label class="pin-field">Huiscode<input id="houseCodeInput" type="password" autocomplete="off" required></label>
       <p class="pin-error" id="houseCodeError"></p>
       <button type="submit" class="primary-action">Open De Turf</button>
+    </form>
+  </dialog>
+
+  <dialog id="balanceDialog" class="center-dialog">
+    <form method="dialog" id="balanceForm">
+      <button class="close floating" value="cancel">×</button>
+      <span class="big-icon">⚖️</span>
+      <h2 id="balanceTitle">Saldo aanpassen</h2>
+      <p>Vul het gewenste eindsaldo in. Een negatief bedrag is toegestaan.</p>
+      <label class="money-input">€ <input id="balanceAmount" inputmode="decimal" type="number" step="0.01" value="0.00"></label>
+      <button type="submit" class="primary-action">Saldo opslaan</button>
     </form>
   </dialog>
 

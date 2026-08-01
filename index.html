@@ -17,6 +17,37 @@
 </head>
 <body>
   <main class="app-shell">
+    <section class="ipad-kiosk" id="ipadKiosk">
+      <div class="ipad-home" id="ipadHome">
+        <div class="ipad-hero">
+          <div>
+            <p class="eyebrow">KOELKASTMODUS</p>
+            <h1>Wie turf jij?</h1>
+            <p>Tik je naam. Daarna één tik voor 1 stuk, of duw en veeg omhoog voor meerdere.</p>
+          </div>
+          <div class="ipad-side">
+            <div class="ipad-status" id="ipadStatus">Even verbinden…</div>
+            <button class="ipad-switch-profile" id="ipadSwitchProfile" type="button">Profiel wijzigen</button>
+          </div>
+        </div>
+        <div class="ipad-name-grid" id="ipadNameGrid"></div>
+      </div>
+
+      <div class="ipad-turf-screen" id="ipadTurfScreen" hidden>
+        <button class="ipad-back" id="ipadBackButton">← Namen</button>
+        <div class="ipad-person-card">
+          <span class="mini-avatar" id="ipadPersonInitials">?</span>
+          <div>
+            <p class="eyebrow">TURVEN VOOR</p>
+            <h1 id="ipadPersonName">Naam</h1>
+            <p id="ipadPersonBalance">Saldo laden…</p>
+          </div>
+        </div>
+        <div class="ipad-products" id="ipadProducts"></div>
+        <p class="ipad-help">Tik = 1. Duw, veeg omhoog en laat los = meerdere tegelijk.</p>
+      </div>
+    </section>
+
     <header class="topbar">
       <div class="brand"><span class="brand-mark">T</span><span>De Turf</span></div>
       <button class="avatar" id="profileButton" aria-label="Profiel kiezen">?</button>
